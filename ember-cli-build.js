@@ -5,6 +5,9 @@ const EmberApp = require('ember-cli/lib/broccoli/ember-app');
 module.exports = function(defaults) {
   let app = new EmberApp(defaults, {
     // Add options here
+    'ember-font-awesome': {
+      removeUnusedIcons: EmberApp.env() === 'production' // The addon will remove unused icons in production
+    }
   });
 
   // Use `app.import` to add additional libraries to the generated

@@ -22,5 +22,22 @@ export default function() {
     this.del('/posts/:id');
 
     http://www.ember-cli-mirage.com/docs/v0.4.x/shorthands/
-  */
+    */
+
+  this.namespace = 'api';
+  this.timing = 300;
+
+  this.get('customers', function({ customers }, { queryParams: { filterTerm } }) {
+    // Costruct a regex for searching the customers model
+    const filterRegex = new RegExp(filterTerm.toLowerCase());
+
+    // Given all customers filter only those customers
+    // who posses an attribute which is a string and
+    // which passes the filterRegex
+    return customers.all().filter(({attrs}) => (
+      Object.keys(attrs).filter(a => (
+        (typeof attrs[a] === 'string') && attrs[a].toLowerCase().match(filterRegex))
+      ).length > 0
+    ));
+  });
 }

@@ -12,15 +12,6 @@ module('Integration | Component | customer-search', function(hooks) {
 
     await render(hbs`{{customer-search}}`);
 
-    assert.equal(this.element.textContent.trim(), '');
-
-    // Template block usage:
-    await render(hbs`
-      {{#customer-search}}
-        template block text
-      {{/customer-search}}
-    `);
-
-    assert.equal(this.element.textContent.trim(), 'template block text');
+    assert.equal(this.element.textContent.trim(), '@');
   });
 });

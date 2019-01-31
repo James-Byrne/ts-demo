@@ -8,4 +8,5 @@ export default Model.extend({
   dob: attr('string'),
   phone: attr('string'),
   mobile: attr('string'),
+  randomId: attr('string'),
 });

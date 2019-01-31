@@ -20,7 +20,10 @@ module.exports = function(environment) {
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
-    }
+    },
+
+    // The namespace under which our api will exist
+    namespace: 'api',
   };
 
   if (environment === 'development') {

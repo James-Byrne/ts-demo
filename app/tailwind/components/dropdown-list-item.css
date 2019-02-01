@@ -1,0 +1,30 @@
+/**
+ * You can create Tailwind components using @apply here.
+ *
+ * Feel free to rename this file, define multiple components here, or make
+ * any other files in this directory.
+
+ * Here's an example:
+**/
+
+/*
+.btn-blue {
+ @apply .bg-blue .text-white .font-bold .py-2 .px-4 .rounded;
+}
+.btn-blue:hover {
+ @apply .bg-blue-dark;
+}
+*/
+
+.dropdown-list-item {
+  @apply .p-2 .text-left .w-full;
+}
+.dropdown-list-item.selected {
+  @apply .bg-black .text-white;
+}
+.dropdown-list-item:hover {
+  @apply .bg-black .text-white;
+}
+.dropdown-list-item:focus {
+  @apply .outline-none .shadow-none;
+}

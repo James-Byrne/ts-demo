@@ -12,6 +12,6 @@ module('Integration | Component | customer-search', function(hooks) {
 
     await render(hbs`{{customer-search}}`);
 
-    assert.equal(this.element.textContent.trim(), '@');
+    assert.equal(this.element.textContent.trim(), '');
   });
 });

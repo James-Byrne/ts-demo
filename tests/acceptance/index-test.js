@@ -34,7 +34,17 @@ module('Acceptance | index', function(hooks) {
     assert.equal(currentURL(), '/');
 
     await fillIn('[data-test-customer-search-input]', 'Janeen');
-    assert.ok('[data-test-customer="1"]')
+    assert.ok(find('[data-test-customer="0"]'));
+  });
+
+  test('the customer search will show a no matching customers message when no customers match the query', async function(assert) {
+    assert.expect(2);
+
+    await visit('/');
+    assert.equal(currentURL(), '/');
+
+    await fillIn('[data-test-customer-search-input]', 'xxxxxxxx');
+    assert.ok(find('[data-test-customer-search-no-customers-found]'));
   });
 
   test('the customer search will show only the customers that match the query', async function(assert) {
@@ -58,7 +68,7 @@ module('Acceptance | index', function(hooks) {
     assert.ok(find('[data-test-customer="4"]'), 'not all customers were rendered');
   });
 
-  test('clicking on a customer will set the input value to the customer name', async function(assert) {
+  test('clicking on a customer will set the edit btn value to the customer name', async function(assert) {
     assert.expect(3);
 
     await visit('/');
@@ -68,20 +78,18 @@ module('Acceptance | index', function(hooks) {
     assert.ok(find('[data-test-customer="0"]'), 'customer was not rendered');
 
     await click('[data-test-customer="0"]');
-    assert.equal(find('[data-test-customer-search-input]').value, 'Stroup, Janeen');
+    assert.equal(find('[data-test-customer-search-edit-btn]').innerText, 'Stroup, Janeen');
   });
 
   test('the user can navigate the list with the arrow keys', async function(assert) {
-    assert.expect(7);
+    assert.expect(8);
 
     await visit('/');
     assert.equal(currentURL(), '/');
 
     await fillIn('[data-test-customer-search-input]', 'a');
     assert.ok(find('[data-test-customer="0"]'), 'customer was not rendered');
-
-    await click('[data-test-customer="0"]');
-    await click('[data-test-customer="1"]');
+    assert.ok(find('[data-test-customer="1"]'), 'the second customer was not rendered');
 
     await triggerKeyEvent('[data-test-customer-search]', 'keydown', DOWN);
     assert.ok(find('[data-test-customer="0"]').classList.contains('bg-black'), 'the first customer should be highlighted');
@@ -96,26 +104,24 @@ module('Acceptance | index', function(hooks) {
   });
 
   test('the user can select a user with the arrow keys and "enter"', async function(assert) {
-    assert.expect(7);
+    assert.expect(5);
 
     await visit('/');
     assert.equal(currentURL(), '/');
 
-    await fillIn('[data-test-customer-search-input]', 'Janeen');
+    await fillIn('[data-test-customer-search-input]', 'a');
     assert.ok(find('[data-test-customer="0"]'), 'customer was not rendered');
-
-    await click('[data-test-customer="0"]');
-    await click('[data-test-customer="1"]');
+    assert.ok(find('[data-test-customer="1"]'), 'the second customer was not rendered');
 
     await triggerKeyEvent('[data-test-customer-search]', 'keydown', DOWN);
     assert.ok(find('[data-test-customer="0"]').classList.contains('bg-black'), 'the first customer should be highlighted');
 
     await triggerKeyEvent('[data-test-customer-search]', 'keydown', ENTER);
-    assert.equal(find('[data-test-customer-search-input]').value, 'Stroup, Janeen');
+    assert.equal(find('[data-test-customer-search-edit-btn]').innerText, 'Stroup, Janeen');
   });
 
-  test('clicking on a customer will set the input value to the customer name and close the dropdown', async function(assert) {
-    assert.expect(3);
+  test('clicking on a customer will set the edit button value to the customer name and close the dropdown', async function(assert) {
+    assert.expect(4);
 
     await visit('/');
     assert.equal(currentURL(), '/');
@@ -124,7 +130,7 @@ module('Acceptance | index', function(hooks) {
     assert.ok(find('[data-test-customer="0"]'), 'customer was not rendered');
 
     await click('[data-test-customer="0"]');
-    assert.equal(find('[data-test-customer-search-input]').value, 'Stroup, Janeen');
+    assert.equal(find('[data-test-customer-search-edit-btn]').innerText, 'Stroup, Janeen');
     assert.notOk(find('[data-test-customer="0"]'), 'customer should not be rendered anymore');
   });
 
@@ -138,7 +144,7 @@ module('Acceptance | index', function(hooks) {
     assert.ok(find('[data-test-customer="0"]'), 'customer was not rendered');
 
     await click('[data-test-customer="0"]');
-    assert.equal(find('[data-test-customer-search-input]').value, 'Stroup, Janeen');
+    assert.equal(find('[data-test-customer-search-edit-btn]').innerText, 'Stroup, Janeen');
 
     await click('[data-test-customer-search-clear]');
     assert.equal(find('[data-test-customer-search-input]').value, '');
@@ -154,10 +160,10 @@ module('Acceptance | index', function(hooks) {
     assert.ok(find('[data-test-customer="0"]'), 'customer was not rendered');
 
     await click('[data-test-customer="0"]');
-    assert.equal(find('[data-test-customer-search-input]').value, 'Stroup, Janeen');
+    assert.equal(find('[data-test-customer-search-edit-btn]').innerText, 'Stroup, Janeen');
 
     assert.notOk(find('[data-test-customer-form]'), 'the form should not be rendered');
-    await click('[data-test-customer-search-btn]');
+    await click('[data-test-customer-search-edit-btn]');
     assert.ok(find('[data-test-customer-form]'), 'the customer form should be rendered');
   });
 });

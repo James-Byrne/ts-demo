@@ -1,2 +1,10 @@
 @import 'tailwind.css';
 
+input:focus + .input-icon {
+  border-color: black;
+}
+
+.btn:focus {
+  outline: 0;
+  box-shadow: none;
+}

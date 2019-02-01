@@ -1,1 +1,68 @@
-{{yield}}
+<div id="customer-search">
+  <div class="flex flex-wrap flex-row-reverse bg-white">
+    {{#if selectedCustomer}}
+      <div class="flex flex-1 border border-l-0">
+        <button class="btn text-left flex-1 font-bold p-2"
+          data-test-customer-search-edit-btn>
+          {{selectedCustomer.lastName}}, {{selectedCustomer.firstName}}
+        </button>
+
+        <button class="btn flex hover:bg-black hover:text-white py-1 px-2 m-1"
+          {{action "clearCustomer"}}
+          data-test-customer-search-clear>
+          {{fa-icon "times"}}
+        </button>
+      </div>
+    {{else}}
+      <input
+        id="customer-search-input"
+        type="text"
+        class="flex-1 border border-l-0 p-2 focus:border-black outline-none"
+        value={{searchTerm}}
+        onfocus={{action (mut showDropdown) true}}
+        oninput={{action (perform searchForCustomers value="target.value") }}
+        placeholder={{@placeholder}}
+        data-test-customer-search-input>
+    {{/if}}
+
+    <span class="input-icon flex border border-r-0 p-1">
+      <img alt="customer-search-icon" src="/assets/customer-search-icon.png">
+    </span>
+  </div>
+
+  {{#if showDropdown}}
+    <div class="bg-white">
+      {{#if searchForCustomers.isRunning }}
+        <div class="p-2">
+          <div class="loader">Loading...</div>
+        </div>
+      {{else}}
+        {{#each customers as |customer index|}}
+          <button
+            class="dropdown-list-item {{if (eq focusElement index) "selected"}}"
+            {{action "setSelectedCustomer" customer}}
+            onkeypress={{action "setSelectedCustomer" customer}}
+            data-test-customer={{index}}>
+
+            <div class="pb-1 font-bold">
+              {{customer.lastName}}, {{customer.firstName}}
+            </div>
+
+            <div class="text-grey text-sm font-light">
+              <span>{{customer.email}}</span>
+              <span class="pull-right">{{customer.randomId}}</span>
+            </div>
+          </button>
+        {{else if (not-eq customers null)}}
+          <div class="p-2" data-test-customer-search-no-customers-found>
+            No customers found...
+          </div>
+        {{/each}}
+      {{/if}}
+    </div>
+
+    <button class="text-white bg-pink-dark w-full py-2">
+      Create a new customer
+    </button>
+  {{/if}}
+</div>

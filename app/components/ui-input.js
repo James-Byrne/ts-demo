@@ -1,5 +1,5 @@
 import Component from '@ember/component';
-import { not, notEmpty, and, or, readOnly, alias } from '@ember/object/computed';
+import { notEmpty, and, or, readOnly, alias } from '@ember/object/computed';
 import { defineProperty } from '@ember/object';
 
 export default Component.extend({

@@ -21,7 +21,7 @@
             <UiInput
               @name="firstname"
               @label="First Name"
-              @required=true
+              @required={{true}}
               @model={{customer}}
               @valuePath="firstName"
               @inputClasses="border border-grey-light p-2 rounded-sm w-full mt-2"
@@ -32,7 +32,7 @@
             <UiInput
               @name="lastname"
               @label="Last Name"
-              @required=true
+              @required={{true}}
               @model={{customer}}
               @valuePath="lastName"
               @inputClasses="border border-grey-light p-2 rounded-sm w-full mt-2"
@@ -45,7 +45,7 @@
             <UiInput
               @name="email"
               @label="Email"
-              @required=true
+              @required={{true}}
               @model={{customer}}
               @valuePath="email"
               @inputClasses="border border-grey-light p-2 rounded-sm w-full mt-2"
@@ -68,7 +68,7 @@
             <UiInput
               @name="phone"
               @label="Phone"
-              @required=true
+              @required={{true}}
               @model={{customer}}
               @valuePath="phone"
               @inputClasses="border border-grey-light p-2 rounded-sm w-full mt-2"

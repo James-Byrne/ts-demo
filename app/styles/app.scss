@@ -14,3 +14,20 @@ input:focus + .input-icon {
   @extend .bg-grey;
   @extend .text-white;
 }
+
+.highlight-text {
+  @extend .font-bold;
+  @extend .text-black;
+}
+.dropdown-list-item:hover {
+  .highlight-text {
+    @extend .text-white;
+    @extend .bg-grey-darkest;
+  }
+}
+.dropdown-list-item.selected {
+  .highlight-text {
+    @extend .text-white;
+    @extend .bg-grey-darkest;
+  }
+}

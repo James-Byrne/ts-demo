@@ -10,3 +10,7 @@ input:focus + .input-icon {
   @extend .outline-none;
   @extend .shadow-none;
 }
+.btn:disabled {
+  @extend .bg-grey;
+  @extend .text-white;
+}

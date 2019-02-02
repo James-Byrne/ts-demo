@@ -1,7 +1,10 @@
 import Controller from '@ember/controller';
 import { openModal, closeModal } from '../lib/utils';
+import { inject as service } from '@ember/service';
 
 export default Controller.extend({
+  store: service(),
+
   openModal,
   closeModal,
 

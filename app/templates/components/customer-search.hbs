@@ -54,12 +54,12 @@
             data-test-customer={{index}}>
 
             <div class="pb-1 font-bold">
-              {{customer.lastName}}, {{customer.firstName}}
+              {{highlight-matching searchTerm (concat customer.lastName ", " customer.firstName)}}
             </div>
 
             <div class="text-grey text-sm font-light">
-              <span>{{customer.email}}</span>
-              <span class="pull-right">{{customer.randomId}}</span>
+              <span>{{highlight-matching searchTerm customer.email}}</span>
+              <span class="pull-right">{{highlight-matching searchTerm customer.randomId}}</span>
             </div>
           </button>
         {{else if (not-eq customers null)}}

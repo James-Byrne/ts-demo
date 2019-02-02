@@ -62,6 +62,10 @@ export default Component.extend({
   },
 
   searchForCustomers: task(function * (searchTerm) {
+    // Update the searchTerm so we can use it
+    // elsewhere in the component
+    this.set('searchTerm', searchTerm);
+
     // Check that the term is not empty
     if (searchTerm === '' || searchTerm === undefined) return;
 

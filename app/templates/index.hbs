@@ -9,8 +9,79 @@
 
 {{#if showCustomerDetailsModal}}
   <UiModal @onClose={{action "closeModal" "CustomerDetailsModal"}}>
-    <form data-test-customer-form>
+
+    <div class="px-6 py-3 border-b border-grey">
+      <h4>Customer details</h4>
+    </div>
+
+    <form {{action (perform saveCustomer) customer on="submit"}} data-test-customer-form>
+      <div class="p-4">
+        <div class="sm:flex">
+          <div class="sm:flex-1 p-2">
+            <UiInput
+              @name="firstname"
+              @label="First Name"
+              @value={{customer.firstName}}
+              @inputClasses="border border-grey-light p-2 rounded-sm w-full mt-2"
+              @placeholder="First Name" />
+          </div>
+
+          <div class="sm:flex-1 p-2">
+            <UiInput
+              @name="lastname"
+              @label="Last Name"
+              @value={{customer.lastName}}
+              @inputClasses="border border-grey-light p-2 rounded-sm w-full mt-2"
+              @placeholder="Last Name" />
+          </div>
+        </div>
+
+        <div class="sm:flex">
+          <div class="sm:flex-1 p-2">
+            <UiInput
+              @name="email"
+              @label="Email"
+              @value={{customer.email}}
+              @inputClasses="border border-grey-light p-2 rounded-sm w-full mt-2"
+              @placeholder="Email" />
+          </div>
+
+          <div class="sm:flex-1 p-2">
+            <UiInput
+              @name="dob"
+              @label="Date of birth"
+              @value={{customer.dob}}
+              @inputClasses="border border-grey-light p-2 rounded-sm w-full mt-2"
+              @placeholder="2009-08-01" />
+          </div>
+        </div>
+
+        <div class="sm:flex">
+          <div class="sm:flex-1 p-2">
+            <UiInput
+              @name="phone"
+              @label="Phone"
+              @value={{customer.phone}}
+              @inputClasses="border border-grey-light p-2 rounded-sm w-full mt-2"
+              @placeholder="(+00) 1234-567890" />
+          </div>
+
+          <div class="sm:flex-1 p-2">
+            <UiInput
+              @name="mobile"
+              @label="Mobile"
+              @value={{customer.mobile}}
+              @inputClasses="border border-grey-light p-2 rounded-sm w-full mt-2"
+              @placeholder="(+00) 1234-567890" />
+          </div>
+        </div>
+      </div>
+
+      <button type="submit" class="btn text-white bg-pink-dark text-xl p-2 w-full" data-test-customer-details-submit>
+        Save
+      </button>
     </form>
+
   </UiModal>
 {{/if}}
 

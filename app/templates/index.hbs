@@ -1,5 +1,17 @@
 <div class="mx-auto md:max-w-md pt-16">
   <h1 class="mb-5 font-light text-center text-pink-dark">Customer Search Demo</h1>
-  <CustomerSearch @placeholder="Assign customer" data-test-customer-search/>
+  <CustomerSearch
+    @placeholder="Assign customer"
+    @createCustomer={{action "createCustomer"}}
+    @editCustomer={{action "editCustomer"}}
+    data-test-customer-search/>
 </div>
+
+{{#if showCustomerDetailsModal}}
+  <UiModal @onClose={{action "closeModal" "CustomerDetailsModal"}}>
+    <form data-test-customer-form>
+    </form>
+  </UiModal>
+{{/if}}
+
 {{outlet}}

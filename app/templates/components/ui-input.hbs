@@ -1,6 +1,15 @@
 {{#if @label}}
-  <label for={{@name}}>{{@label}}</label>
+  <label for={{@name}}>
+    {{@label}} {{#if @required}}<span class="text-red">*</span>{{/if}}
+  </label>
 {{/if}}
-<input value={{@value}} type={{@type}} placeholder={{@placeholder}} name={{@name}}
-  class={{@inputClasses}} oninput={{action (mut value) value="target.value"}}>
+<input value={{value}} type={{@type}} placeholder={{@placeholder}} name={{@name}} required={{@required}}
+  class="{{@inputClasses}} {{if (and showErrorMessage (v-get @model valuePath "isInvalid")) "border-red"}}"
+  oninput={{action (mut value) value="target.value"}}>
+
+{{#if showErrorMessage}}
+  <div class='text-red text-sm mt-1'>
+    {{v-get @model @valuePath 'message'}}
+  </div>
+{{/if}}
 {{yield}}

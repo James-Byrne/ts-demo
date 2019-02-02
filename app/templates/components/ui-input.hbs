@@ -1,0 +1,6 @@
+{{#if @label}}
+  <label for={{@name}}>{{@label}}</label>
+{{/if}}
+<input value={{@value}} type={{@type}} placeholder={{@placeholder}} name={{@name}}
+  class={{@inputClasses}} oninput={{action (mut value) value="target.value"}}>
+{{yield}}

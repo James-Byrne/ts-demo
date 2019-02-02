@@ -32,6 +32,7 @@
     "ember-cli-inject-live-reload": "^1.8.2",
     "ember-cli-mirage": "^0.4.14",
     "ember-cli-moment-shim": "^3.7.1",
+    "ember-cli-notifications": "^4.3.3",
     "ember-cli-sass": "^10.0.0",
     "ember-cli-sri": "^2.1.1",
     "ember-cli-tailwind": "^0.7.0",

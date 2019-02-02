@@ -166,4 +166,45 @@ module('Acceptance | index', function(hooks) {
     await click('[data-test-customer-search-edit-btn]');
     assert.ok(find('[data-test-customer-form]'), 'the customer form should be rendered');
   });
+
+  test('opening the customer edit form with a customer will show their details', async function(assert) {
+    assert.expect(6);
+
+    await visit('/');
+    assert.equal(currentURL(), '/');
+
+    await fillIn('[data-test-customer-search-input]', 'Janeen');
+    assert.ok(find('[data-test-customer="0"]'), 'customer was not rendered');
+
+    await click('[data-test-customer="0"]');
+    assert.equal(find('[data-test-customer-search-edit-btn]').innerText, 'Stroup, Janeen');
+
+    assert.notOk(find('[data-test-customer-form]'), 'the form should not be rendered');
+    await click('[data-test-customer-search-edit-btn]');
+    assert.ok(find('[data-test-customer-form]'), 'the customer form should be rendered');
+    assert.equal(find('input[name="firstname"]').value, 'Janeen');
+  });
+
+  test('editing a customer will change their details in the customer search list', async function(assert) {
+    assert.expect(7);
+
+    await visit('/');
+    assert.equal(currentURL(), '/');
+
+    await fillIn('[data-test-customer-search-input]', 'Janeen');
+    assert.ok(find('[data-test-customer="0"]'), 'customer was not rendered');
+
+    await click('[data-test-customer="0"]');
+    assert.equal(find('[data-test-customer-search-edit-btn]').innerText, 'Stroup, Janeen');
+
+    assert.notOk(find('[data-test-customer-form]'), 'the form should not be rendered');
+    await click('[data-test-customer-search-edit-btn]');
+    assert.ok(find('[data-test-customer-form]'), 'the customer form should be rendered');
+
+    await fillIn('input[name="firstname"]', 'Testing');
+    await click('[data-test-customer-details-submit]');
+
+    assert.notOk(find('[data-test-customer-form]'), 'the form should not be rendered');
+    assert.equal(find('[data-test-customer-search-edit-btn]').innerText, 'Stroup, Testing');
+  });
 });

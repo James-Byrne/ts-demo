@@ -92,15 +92,15 @@ module('Acceptance | index', function(hooks) {
     assert.ok(find('[data-test-customer="1"]'), 'the second customer was not rendered');
 
     await triggerKeyEvent('[data-test-customer-search]', 'keydown', DOWN);
-    assert.ok(find('[data-test-customer="0"]').classList.contains('bg-black'), 'the first customer should be highlighted');
+    assert.ok(find('[data-test-customer="0"]').classList.contains('selected'), 'the first customer should be highlighted');
 
     await triggerKeyEvent('[data-test-customer-search]', 'keydown', DOWN);
-    assert.ok(find('[data-test-customer="1"]').classList.contains('bg-black'), 'the second customer was not highlighted');
-    assert.notOk(find('[data-test-customer="0"]').classList.contains('bg-black'), 'the first customer should not be highlighted');
+    assert.ok(find('[data-test-customer="1"]').classList.contains('selected'), 'the second customer was not highlighted');
+    assert.notOk(find('[data-test-customer="0"]').classList.contains('selected'), 'the first customer should not be highlighted');
 
     await triggerKeyEvent('[data-test-customer-search]', 'keydown', UP);
-    assert.ok(find('[data-test-customer="0"]').classList.contains('bg-black'), 'the first customer should be highlighted');
-    assert.notOk(find('[data-test-customer="1"]').classList.contains('bg-black'), 'the first customer should not be highlighted');
+    assert.ok(find('[data-test-customer="0"]').classList.contains('selected'), 'the first customer should be highlighted');
+    assert.notOk(find('[data-test-customer="1"]').classList.contains('selected'), 'the first customer should not be highlighted');
   });
 
   test('the user can select a user with the arrow keys and "enter"', async function(assert) {
@@ -114,7 +114,7 @@ module('Acceptance | index', function(hooks) {
     assert.ok(find('[data-test-customer="1"]'), 'the second customer was not rendered');
 
     await triggerKeyEvent('[data-test-customer-search]', 'keydown', DOWN);
-    assert.ok(find('[data-test-customer="0"]').classList.contains('bg-black'), 'the first customer should be highlighted');
+    assert.ok(find('[data-test-customer="0"]').classList.contains('selected'), 'the first customer should be highlighted');
 
     await triggerKeyEvent('[data-test-customer-search]', 'keydown', ENTER);
     assert.equal(find('[data-test-customer-search-edit-btn]').innerText, 'Stroup, Janeen');

@@ -40,4 +40,7 @@ export default function() {
       ).length > 0
     ));
   });
+
+  this.post('customers');
+  this.patch('customers/:id');
 }

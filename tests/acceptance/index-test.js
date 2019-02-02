@@ -207,4 +207,54 @@ module('Acceptance | index', function(hooks) {
     assert.notOk(find('[data-test-customer-form]'), 'the form should not be rendered');
     assert.equal(find('[data-test-customer-search-edit-btn]').innerText, 'Stroup, Testing');
   });
+
+  test('the save customer details button should be disabled while input is invalid', async function(assert) {
+    assert.expect(9);
+
+    await visit('/');
+    assert.equal(currentURL(), '/');
+
+    await fillIn('[data-test-customer-search-input]', 'Janeen');
+    assert.ok(find('[data-test-customer="0"]'), 'customer was not rendered');
+
+    await click('[data-test-customer="0"]');
+    assert.equal(find('[data-test-customer-search-edit-btn]').innerText, 'Stroup, Janeen');
+
+    assert.notOk(find('[data-test-customer-form]'), 'the form should not be rendered');
+    await click('[data-test-customer-search-edit-btn]');
+    assert.ok(find('[data-test-customer-form]'), 'the customer form should be rendered');
+
+    await fillIn('input[name="firstname"]', '');
+    assert.ok(find('[data-test-customer-details-submit]').disabled, 'the submit button should be disabled');
+
+    await fillIn('input[name="firstname"]', 'Testing');
+    assert.notOk(find('[data-test-customer-details-submit]').disabled, 'the submit button should be enabled');
+
+    await click('[data-test-customer-details-submit]');
+    assert.notOk(find('[data-test-customer-form]'), 'the form should not be rendered');
+    assert.equal(find('[data-test-customer-search-edit-btn]').innerText, 'Stroup, Testing');
+  });
+
+  test('the save customer details button should be enabled when the required details are filled', async function(assert) {
+    assert.expect(6);
+
+    await visit('/');
+    assert.equal(currentURL(), '/');
+
+    await fillIn('[data-test-customer-search-input]', '');
+    assert.ok(find('[data-test-customer-search-create]'), 'the create customer button is not rendered');
+
+    await click('[data-test-customer-search-create]');
+    assert.ok(find('[data-test-customer-form]'), 'the customer form should be rendered');
+    assert.ok(find('[data-test-customer-details-submit]').disabled, 'the submit button should be disabled');
+
+    await fillIn('input[name="firstname"]', 'James');
+    await fillIn('input[name="lastname"]', 'Byrne');
+    await fillIn('input[name="phone"]', '087 777 7777');
+    await fillIn('input[name="email"]', 'test@test.com');
+    assert.notOk(find('[data-test-customer-details-submit]').disabled, 'the submit button should be enabled');
+
+    await click('[data-test-customer-details-submit]');
+    assert.notOk(find('[data-test-customer-form]'), 'the form should not be rendered');
+  });
 });

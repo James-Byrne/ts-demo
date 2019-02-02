@@ -21,7 +21,9 @@
             <UiInput
               @name="firstname"
               @label="First Name"
-              @value={{customer.firstName}}
+              @required=true
+              @model={{customer}}
+              @valuePath="firstName"
               @inputClasses="border border-grey-light p-2 rounded-sm w-full mt-2"
               @placeholder="First Name" />
           </div>
@@ -30,7 +32,9 @@
             <UiInput
               @name="lastname"
               @label="Last Name"
-              @value={{customer.lastName}}
+              @required=true
+              @model={{customer}}
+              @valuePath="lastName"
               @inputClasses="border border-grey-light p-2 rounded-sm w-full mt-2"
               @placeholder="Last Name" />
           </div>
@@ -41,7 +45,9 @@
             <UiInput
               @name="email"
               @label="Email"
-              @value={{customer.email}}
+              @required=true
+              @model={{customer}}
+              @valuePath="email"
               @inputClasses="border border-grey-light p-2 rounded-sm w-full mt-2"
               @placeholder="Email" />
           </div>
@@ -50,7 +56,8 @@
             <UiInput
               @name="dob"
               @label="Date of birth"
-              @value={{customer.dob}}
+              @model={{customer}}
+              @valuePath="dob"
               @inputClasses="border border-grey-light p-2 rounded-sm w-full mt-2"
               @placeholder="2009-08-01" />
           </div>
@@ -61,23 +68,26 @@
             <UiInput
               @name="phone"
               @label="Phone"
-              @value={{customer.phone}}
+              @required=true
+              @model={{customer}}
+              @valuePath="phone"
               @inputClasses="border border-grey-light p-2 rounded-sm w-full mt-2"
               @placeholder="(+00) 1234-567890" />
           </div>
 
-          <div class="sm:flex-1 p-2">
+          <div class="sm:flex-1 p-2 mt-2">
             <UiInput
               @name="mobile"
               @label="Mobile"
-              @value={{customer.mobile}}
+              @model={{customer}}
+              @valuePath="mobile"
               @inputClasses="border border-grey-light p-2 rounded-sm w-full mt-2"
               @placeholder="(+00) 1234-567890" />
           </div>
         </div>
       </div>
 
-      <button type="submit" class="btn text-white bg-pink-dark text-xl p-2 w-full" data-test-customer-details-submit>
+      <button type="submit" class="btn text-white bg-pink-dark text-xl p-2 w-full" disabled={{not (v-get customer "isValid")}} data-test-customer-details-submit>
         Save
       </button>
     </form>

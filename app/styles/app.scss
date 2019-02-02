@@ -1,0 +1,12 @@
+@import 'tailwind';
+@import "ember-modal-dialog/ember-modal-structure";
+@import "ember-modal-dialog/ember-modal-appearance";
+
+input:focus + .input-icon {
+  @extend .border-black;
+}
+
+.btn:focus {
+  @extend .outline-none;
+  @extend .shadow-none;
+}

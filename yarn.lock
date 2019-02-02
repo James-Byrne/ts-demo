@@ -3767,7 +3767,7 @@ ember-font-awesome@^4.0.0-rc.4:
     postcss "^6.0.14"
     sync-disk-cache "^1.3.2"
 
-ember-get-config@^0.2.2, ember-get-config@^0.2.3:
+ember-get-config@^0.2.2, ember-get-config@^0.2.3, ember-get-config@^0.2.4:
   version "0.2.4"
   resolved "https://registry.yarnpkg.com/ember-get-config/-/ember-get-config-0.2.4.tgz#118492a2a03d73e46004ed777928942021fe1ecd"
   integrity sha1-EYSSoqA9c+RgBO13eSiUICH+Hs0=
@@ -3906,6 +3906,20 @@ ember-test-selectors@^2.0.0:
   dependencies:
     ember-cli-babel "^6.8.2"
     ember-cli-version-checker "^2.0.0"
+
+ember-tooltips@^3.1.1:
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/ember-tooltips/-/ember-tooltips-3.1.1.tgz#ce0b94c092b119feae668358f0aa416eab56f608"
+  integrity sha512-CYVE/d8xJmSuc/DcOcfblKgOmJ2ejFVbX11UpUR4Pk6iV6GKblntjlvP81bpqy89tED4VIP+I3oCLmHKec17Gw==
+  dependencies:
+    broccoli-funnel "^2.0.1"
+    broccoli-merge-trees "^2.0.0"
+    ember-cli-babel "^6.16.0"
+    ember-cli-htmlbars "^3.0.0"
+    ember-get-config "^0.2.4"
+    ember-wormhole "^0.5.5"
+    popper.js "^1.12.5"
+    tooltip.js "^1.1.5"
 
 ember-truth-helpers@^2.0.0, ember-truth-helpers@^2.1.0:
   version "2.1.0"
@@ -7151,6 +7165,11 @@ pluralize@^7.0.0:
   resolved "https://registry.yarnpkg.com/pluralize/-/pluralize-7.0.0.tgz#298b89df8b93b0221dbf421ad2b1b1ea23fc6777"
   integrity sha512-ARhBOdzS3e41FbkW/XWrTEtukqqLoK5+Z/4UeDaLuSW+39JPeFgs4gCGqsrJHVZX0fUrx//4OF0K1CUGwlIFow==
 
+popper.js@^1.0.2, popper.js@^1.12.5:
+  version "1.14.7"
+  resolved "https://registry.yarnpkg.com/popper.js/-/popper.js-1.14.7.tgz#e31ec06cfac6a97a53280c3e55e4e0c860e7738e"
+  integrity sha512-4q1hNvoUre/8srWsH7hnoSJ5xVmIL4qgz+s4qf2TnJIMyZFUFMGH+9vE7mXynAlHSZ/NdTmmow86muD0myUkVQ==
+
 portfinder@^1.0.15:
   version "1.0.20"
   resolved "https://registry.yarnpkg.com/portfinder/-/portfinder-1.0.20.tgz#bea68632e54b2e13ab7b0c4775e9b41bf270e44a"
@@ -8666,6 +8685,13 @@ to-regex@^3.0.1, to-regex@^3.0.2:
     extend-shallow "^3.0.2"
     regex-not "^1.0.2"
     safe-regex "^1.1.0"
+
+tooltip.js@^1.1.5:
+  version "1.3.1"
+  resolved "https://registry.yarnpkg.com/tooltip.js/-/tooltip.js-1.3.1.tgz#f14f18e4ec119c9be198d460db577969e0dc0806"
+  integrity sha512-nZQGUM3YfjUlCVw3+RqYcCubIDj5NmtPsQ6Xj1NZvii1KSnPxuQ9d6xvNgsNmsmilwhNcBOmHLhwuSDVYINm0g==
+  dependencies:
+    popper.js "^1.0.2"
 
 tree-sync@^1.2.2:
   version "1.4.0"

@@ -2,16 +2,24 @@
   <div class="flex flex-wrap flex-row-reverse bg-white">
     {{#if selectedCustomer}}
       <div class="flex flex-1 border border-l-0">
-        <button class="btn text-left flex-1 font-bold p-2"
+        <button class="btn flex text-left font-bold p-2"
           {{action @editCustomer selectedCustomer}}
           data-test-customer-search-edit-btn>
           {{selectedCustomer.lastName}}, {{selectedCustomer.firstName}}
+
+          <EmberTooltip @class="" @side="bottom">
+            Edit/view customer
+          </EmberTooltip>
         </button>
 
-        <button class="btn flex hover:bg-black hover:text-white py-1 px-2 m-1"
+        <button class="btn ml-auto hover:bg-black hover:text-white py-1 px-2 m-1"
           {{action "clearCustomer"}}
           data-test-customer-search-clear>
           {{fa-icon "times"}}
+
+          <EmberTooltip @class="" @side="bottom">
+            Clear customer
+          </EmberTooltip>
         </button>
       </div>
     {{else}}

@@ -7,6 +7,7 @@ const CUSTOMER_DETAILS_MODAL = 'CustomerDetailsModal';
 
 export default Controller.extend({
   store: service(),
+  notify: service('notification-messages'),
 
   openModal,
   closeModal,
@@ -16,7 +17,7 @@ export default Controller.extend({
       yield customer.save();
       this.closeModal(CUSTOMER_DETAILS_MODAL);
     } catch(e) {
-      // show an error message
+      this.notify.error('There was an issue saving the customer details, please try again');
     }
   }),
 

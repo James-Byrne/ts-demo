@@ -9,9 +9,11 @@ const DOWN = 40;
 const ENTER = 13;
 
 export default Component.extend({
-  store: service(),
   focusElement: -1,
   customers: null,
+
+  store: service(),
+  notify: service('notification-messages'),
 
   didInsertElement() {
     this._super(...arguments);
@@ -77,7 +79,7 @@ export default Component.extend({
       const result = yield this.store.query('customer', {filterTerm: searchTerm});
       this.set('customers', result);
     } catch(e) {
-      // TODO: show a error message
+      this.notify.error('Something went wrong while looking for customers');
     }
   }).restartable(),
 

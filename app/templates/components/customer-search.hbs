@@ -42,8 +42,8 @@
   {{#if showDropdown}}
     <div class="bg-white">
       {{#if searchForCustomers.isRunning }}
-        <div class="p-2">
-          <div class="loader">Loading...</div>
+        <div class="p-2 flex">
+          <div class="loader"></div> <i class="text-grey-darker font-light ml-3 my-auto text-sm">searching ...</i>
         </div>
       {{else}}
         {{#each customers as |customer index|}}

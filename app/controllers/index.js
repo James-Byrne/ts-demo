@@ -2,6 +2,7 @@ import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
 import { task } from 'ember-concurrency';
 import { openModal, closeModal } from '../lib/utils';
+import { faker } from 'ember-cli-mirage';
 
 const CUSTOMER_DETAILS_MODAL = 'CustomerDetailsModal';
 
@@ -16,6 +17,7 @@ export default Controller.extend({
     try {
       yield customer.save();
       this.closeModal(CUSTOMER_DETAILS_MODAL);
+      this.set('newCustomer', customer);
     } catch(e) {
       this.notify.error('There was an issue saving the customer details, please try again');
     }
@@ -33,7 +35,7 @@ export default Controller.extend({
     },
 
     createCustomer() {
-      const newCustomer = this.store.createRecord('customer');
+      const newCustomer = this.store.createRecord('customer', { randomId: faker.random.uuid() });
       this.set('customer', newCustomer);
       this.openModal(CUSTOMER_DETAILS_MODAL);
     },

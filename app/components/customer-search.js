@@ -64,13 +64,6 @@ export default Component.extend({
   },
 
   searchForCustomers: task(function * (searchTerm) {
-    // Update the searchTerm so we can use it
-    // elsewhere in the component
-    this.set('searchTerm', searchTerm);
-
-    // Check that the term is not empty
-    if (searchTerm === '' || searchTerm === undefined) return;
-
     // Delay the request by 300 milliseconds
     // incase the user is still typing
     yield timeout(300);
@@ -91,6 +84,20 @@ export default Component.extend({
   actions: {
     setSelectedCustomer(customer) {
       this.setSelectedCustomer(customer);
+    },
+
+    onInput(searchTerm) {
+      // Update the searchTerm so we can use it
+      // elsewhere in the component
+      this.set('searchTerm', searchTerm);
+
+      // Check that the term is not empty
+      if (searchTerm === '' || searchTerm === undefined) {
+        return
+      } else {
+        this.set('showDropdown', true);
+        this.searchForCustomers.perform(searchTerm);
+      }
     },
 
     clearCustomer() {

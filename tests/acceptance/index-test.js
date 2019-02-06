@@ -37,6 +37,21 @@ module('Acceptance | index', function(hooks) {
     assert.ok(find('[data-test-customer="0"]'));
   });
 
+  test('the customer search will show it\'s dropdown when customers match the query', async function(assert) {
+    assert.expect(5);
+
+    await visit('/');
+    assert.equal(currentURL(), '/');
+
+    await fillIn('[data-test-customer-search-input]', 'Janeen');
+    assert.ok(find('[data-test-customer="0"]'));
+    assert.ok(find('[data-test-customer-search-create]'), 'the create customer button is not rendered');
+
+    await fillIn('[data-test-customer-search-input]', '');
+    assert.notOk(find('[data-test-customer="0"]'));
+    assert.ok(find('[data-test-customer-search-create]'), 'the create customer button is not rendered');
+  });
+
   test('the customer search will show a no matching customers message when no customers match the query', async function(assert) {
     assert.expect(2);
 

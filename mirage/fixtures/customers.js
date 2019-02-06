@@ -1,3 +1,5 @@
+import { faker } from 'ember-cli-mirage';
+
 export default [{
   id: 1,
   email: 'JStroup@gmail.com',
@@ -6,7 +8,7 @@ export default [{
   dob: '1967-02-24',
   phone: '+353 20 916 3321',
   mobile: '+353 20 916 3321',
-  randomId: Math.random().toString(36).substring(9),
+  randomId: faker.random.uuid(),
 }, {
   id: 2,
   email: 'trey.schanz@gmail.com',
@@ -15,7 +17,7 @@ export default [{
   dob: '1976-11-05',
   phone: '+353 20 916 3321',
   mobile: '+353 20 916 3321',
-  randomId: Math.random().toString(36).substring(9),
+  randomId: faker.random.uuid(),
 }, {
   id: 3,
   email: 'meri@oakman.com',
@@ -24,7 +26,7 @@ export default [{
   dob: '1977-12-27',
   phone: '+353 20 916 3321',
   mobile: '+353 20 916 3321',
-  randomId: Math.random().toString(36).substring(9),
+  randomId: faker.random.uuid(),
 }, {
   id: 4,
   email: 'zachariah@changex.com',
@@ -33,7 +35,7 @@ export default [{
   dob: '1982-07-30',
   phone: '+353 20 916 3321',
   mobile: '+353 20 916 3321',
-  randomId: Math.random().toString(36).substring(9),
+  randomId: faker.random.uuid(),
 }, {
   id: 5,
   email: 'lcushing@gmail.com',
@@ -42,5 +44,5 @@ export default [{
   dob: '1995-08-25',
   phone: '+353 20 916 3321',
   mobile: '+353 20 916 3321',
-  randomId: Math.random().toString(36).substring(9),
+  randomId: faker.random.uuid(),
 }];

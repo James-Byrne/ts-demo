@@ -2,6 +2,7 @@
   <h1 class="mb-5 font-light text-center text-pink-dark">Customer Search Demo</h1>
   <CustomerSearch
     @placeholder="Assign customer"
+    @selectedCustomer={{newCustomer}}
     @createCustomer={{action "createCustomer"}}
     @editCustomer={{action "editCustomer"}}
     data-test-customer-search/>

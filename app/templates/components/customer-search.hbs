@@ -40,35 +40,37 @@
   </div>
 
   {{#if showDropdown}}
-    <div class="bg-white">
-      {{#if searchForCustomers.isRunning }}
-        <div class="p-2 flex">
-          <div class="loader"></div> <i class="text-grey-darker font-light ml-3 my-auto text-sm">searching ...</i>
-        </div>
-      {{else}}
-        {{#each customers as |customer index|}}
-          <button
-            class="dropdown-list-item {{if (eq focusElement index) "selected"}}"
-            {{action "setSelectedCustomer" customer}}
-            onkeypress={{action "setSelectedCustomer" customer}}
-            data-test-customer={{index}}>
-
-            <div class="pb-1 font-bold">
-              {{highlight-matching searchTerm (concat customer.lastName ", " customer.firstName)}}
-            </div>
-
-            <div class="text-grey text-sm font-light">
-              <span>{{highlight-matching searchTerm customer.email}}</span>
-              <span class="pull-right">{{highlight-matching searchTerm customer.randomId}}</span>
-            </div>
-          </button>
-        {{else if (not-eq customers null)}}
-          <div class="p-2" data-test-customer-search-no-customers-found>
-            No customers found...
+    {{#if searchTerm}}
+      <div class="bg-white">
+        {{#if searchForCustomers.isRunning }}
+          <div class="p-2 flex">
+            <div class="loader"></div> <i class="text-grey-darker font-light ml-3 my-auto text-sm">searching ...</i>
           </div>
-        {{/each}}
-      {{/if}}
-    </div>
+        {{else}}
+          {{#each customers as |customer index|}}
+            <button
+              class="dropdown-list-item {{if (eq focusElement index) "selected"}}"
+              {{action "setSelectedCustomer" customer}}
+              onkeypress={{action "setSelectedCustomer" customer}}
+              data-test-customer={{index}}>
+
+              <div class="pb-1 font-bold">
+                {{highlight-matching searchTerm (concat customer.lastName ", " customer.firstName)}}
+              </div>
+
+              <div class="text-grey text-sm font-light">
+                <span>{{highlight-matching searchTerm customer.email}}</span>
+                <span class="pull-right">{{highlight-matching searchTerm customer.randomId}}</span>
+              </div>
+            </button>
+          {{else if (not-eq customers null)}}
+            <div class="p-2" data-test-customer-search-no-customers-found>
+              No customers found...
+            </div>
+          {{/each}}
+        {{/if}}
+      </div>
+    {{/if}}
 
     <button class="text-white bg-pink-dark w-full py-2" {{action @createCustomer}} data-test-customer-search-create>
       Create a new customer

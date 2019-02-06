@@ -272,4 +272,28 @@ module('Acceptance | index', function(hooks) {
     await click('[data-test-customer-details-submit]');
     assert.notOk(find('[data-test-customer-form]'), 'the form should not be rendered');
   });
+
+  test('the test should populate the edit customer button with a new user', async function(assert) {
+    assert.expect(7);
+
+    await visit('/');
+    assert.equal(currentURL(), '/');
+
+    await fillIn('[data-test-customer-search-input]', '');
+    assert.ok(find('[data-test-customer-search-create]'), 'the create customer button is not rendered');
+
+    await click('[data-test-customer-search-create]');
+    assert.ok(find('[data-test-customer-form]'), 'the customer form should be rendered');
+    assert.ok(find('[data-test-customer-details-submit]').disabled, 'the submit button should be disabled');
+
+    await fillIn('input[name="firstname"]', 'James');
+    await fillIn('input[name="lastname"]', 'Byrne');
+    await fillIn('input[name="phone"]', '087 777 7777');
+    await fillIn('input[name="email"]', 'test@test.com');
+    assert.notOk(find('[data-test-customer-details-submit]').disabled, 'the submit button should be enabled');
+
+    await click('[data-test-customer-details-submit]');
+    assert.notOk(find('[data-test-customer-form]'), 'the form should not be rendered');
+    assert.equal(find('[data-test-customer-search-edit-btn]').innerText, 'Byrne, James');
+  });
 });

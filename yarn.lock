@@ -3890,6 +3890,15 @@ ember-cli@~3.7.1:
     watch-detector "^0.1.0"
     yam "^1.0.0"
 
+ember-click-outside@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/ember-click-outside/-/ember-click-outside-1.0.3.tgz#c1f5d5eef1a4991484deeb56dbb943288722760b"
+  integrity sha512-3u94HXgoJYLzyBMh9QcrF1P369yXFUbFbV4CFgEuHrmdSS6CT5rg79qVBwyE3TTvBybtfGlyEHmfs/aV7MZCyw==
+  dependencies:
+    ember-cli-babel "^6.6.0"
+    ember-cli-htmlbars "^2.0.1"
+    ember-native-dom-helpers "^0.5.10"
+
 ember-compatibility-helpers@^1.0.2, ember-compatibility-helpers@^1.1.1:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/ember-compatibility-helpers/-/ember-compatibility-helpers-1.1.2.tgz#ae0ee4a7a2858b5ffdf79b428c23aee85c47d93d"
@@ -4097,6 +4106,14 @@ ember-moment@^7.8.1:
     ember-cli-babel "^6.7.2"
     ember-getowner-polyfill "^2.2.0"
     ember-macro-helpers "^2.1.0"
+
+ember-native-dom-helpers@^0.5.10:
+  version "0.5.10"
+  resolved "https://registry.yarnpkg.com/ember-native-dom-helpers/-/ember-native-dom-helpers-0.5.10.tgz#9c7172e4ddfa5dd86830c46a936e2f8eca3e5896"
+  integrity sha512-bPJX49vlgnBGwFn/3WJPPJjjyd7/atvzW5j01u1dbyFf3bXvHg9Rs1qaZJdk8js0qZ1FINadIEC9vWtgN3w7tg==
+  dependencies:
+    broccoli-funnel "^1.1.0"
+    ember-cli-babel "^6.6.0"
 
 ember-qunit@^3.4.1:
   version "3.5.3"

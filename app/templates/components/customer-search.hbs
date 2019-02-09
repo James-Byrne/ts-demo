@@ -3,7 +3,7 @@
     {{#if selectedCustomer}}
       <div class="flex flex-1 border border-l-0">
         <button class="btn flex text-left font-bold p-2"
-          {{action @editCustomer selectedCustomer}}
+          onclick={{action @editCustomer selectedCustomer}}
           data-test-customer-search-edit-btn>
           {{selectedCustomer.lastName}}, {{selectedCustomer.firstName}}
 
@@ -13,7 +13,7 @@
         </button>
 
         <button class="btn ml-auto hover:bg-black hover:text-white py-1 px-2 m-1"
-          {{action "clearCustomer"}}
+          onclick={{action "clearCustomer"}}
           data-test-customer-search-clear>
           {{fa-icon "times"}}
 
@@ -50,7 +50,7 @@
           {{#each customers as |customer index|}}
             <button
               class="dropdown-list-item {{if (eq focusElement index) "selected"}}"
-              {{action "setSelectedCustomer" customer}}
+              onclick={{action "setSelectedCustomer" customer}}
               onkeypress={{action "setSelectedCustomer" customer}}
               data-test-customer={{index}}>
 
@@ -72,7 +72,7 @@
       </div>
     {{/if}}
 
-    <button class="text-white bg-pink-dark w-full py-2" {{action @createCustomer}} data-test-customer-search-create>
+    <button class="text-white bg-pink-dark w-full py-2" onclick={{action @createCustomer}} data-test-customer-search-create>
       Create a new customer
     </button>
   {{/if}}

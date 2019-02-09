@@ -15,23 +15,6 @@ export default Component.extend({
   store: service(),
   notify: service('notification-messages'),
 
-  didInsertElement() {
-    this._super(...arguments);
-
-    // Get a reference to both the customer search component
-    const customerSearch = document.querySelector('#customer-search');
-
-    customerSearch.addEventListener('mouseleave', () => {
-      // Get a reference to the customerInput, we need to do this here
-      // incase it has ever been hidden which would break our reference
-      const customerInput = document.querySelector('#customer-search-input');
-
-      // If the mouse leaves the customer search component and the
-      // customer search input is not focused then hide the dropdown
-      if (customerInput != document.activeElement) this.set('showDropdown', false);
-    });
-  },
-
   // Extend the keyDown event on our component
   // Here we want to allow the user to navigate the
   // dropdown menu with the up and down arrows.

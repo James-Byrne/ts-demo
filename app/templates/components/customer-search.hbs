@@ -1,4 +1,4 @@
-<ClickOutside id="customer-search" @action={{action (mut showDropdown) false}}>
+<ClickOutside id="customer-search" @action={{action (mut showDropdown) false}} class="relative">
   <div class="flex flex-wrap flex-row-reverse bg-white">
     {{#if selectedCustomer}}
       <div class="flex flex-1 border border-l-0">
@@ -39,8 +39,8 @@
     </span>
   </div>
 
-  {{#if (and showDropdown searchTerm)}}
-    <div class="bg-white">
+  <div class="bg-white absolute w-full">
+    {{#if (and showDropdown searchTerm)}}
       {{#if searchForCustomers.isRunning }}
         <div class="p-2 flex">
           <div class="loader"></div> <i class="text-grey-darker font-light ml-3 my-auto text-sm">searching ...</i>
@@ -68,12 +68,12 @@
           </div>
         {{/each}}
       {{/if}}
-    </div>
-  {{/if}}
-</ClickOutside>
+    {{/if}}
 
-{{#if showDropdown}}
-  <button class="text-white bg-pink-dark w-full py-2" onclick={{action @createCustomer}} data-test-customer-search-create>
-    Create a new customer
-  </button>
-{{/if}}
+    {{#if showDropdown}}
+      <button class="text-white bg-pink-dark w-full py-2" onclick={{action @createCustomer}} data-test-customer-search-create>
+        Create a new customer
+      </button>
+    {{/if}}
+  </div>
+</ClickOutside>

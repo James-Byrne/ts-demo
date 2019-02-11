@@ -88,12 +88,13 @@
         </div>
       </div>
 
-      <button type="submit" class="btn text-white bg-pink-dark text-xl p-2 w-full" disabled={{not (v-get customer "isValid")}} data-test-customer-details-submit>
+      <button type="submit" class="btn text-white bg-pink-dark text-xl p-2 w-full"
+        disabled={{or (not (v-get customer "isValid")) (not customer.hasDirtyAttributes)}}
+        data-test-customer-details-submit>
         Save
       </button>
     </form>
 
   </UiModal>
 {{/if}}
-
 {{outlet}}

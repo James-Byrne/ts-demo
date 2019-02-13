@@ -15,86 +15,89 @@
       <h4>Customer details</h4>
     </div>
 
-    <form {{action (perform saveCustomer) customer on="submit"}} data-test-customer-form>
+    {{#ui-form onSubmit=(action (perform saveCustomer) customer) as |form|}}
       <div class="p-4">
         <div class="sm:flex">
           <div class="sm:flex-1 p-2">
-            <UiInput
-              @name="firstname"
-              @label="First Name"
-              @required={{true}}
-              @model={{customer}}
-              @valuePath="firstName"
-              @inputClasses="border border-grey-light p-2 rounded-sm w-full mt-2"
-              @placeholder="First Name" />
+            {{form.input
+              name="firstname"
+              label="First Name"
+              required=true
+              model=customer
+              valuePath="firstName"
+              inputClasses="border border-grey-light p-2 rounded-sm w-full mt-2"
+              placeholder="First Name"}}
           </div>
 
           <div class="sm:flex-1 p-2">
-            <UiInput
-              @name="lastname"
-              @label="Last Name"
-              @required={{true}}
-              @model={{customer}}
-              @valuePath="lastName"
-              @inputClasses="border border-grey-light p-2 rounded-sm w-full mt-2"
-              @placeholder="Last Name" />
+            {{form.input
+              name="lastname"
+              label="Last Name"
+              required=true
+              model=customer
+              valuePath="lastName"
+              inputClasses="border border-grey-light p-2 rounded-sm w-full mt-2"
+              placeholder="Last Name"}}
           </div>
         </div>
 
         <div class="sm:flex">
           <div class="sm:flex-1 p-2">
-            <UiInput
-              @name="email"
-              @label="Email"
-              @required={{true}}
-              @model={{customer}}
-              @valuePath="email"
-              @inputClasses="border border-grey-light p-2 rounded-sm w-full mt-2"
-              @placeholder="Email" />
+            {{form.input
+              name="email"
+              label="Email"
+              required=true
+              model=customer
+              valuePath="email"
+              inputClasses="border border-grey-light p-2 rounded-sm w-full mt-2"
+              placeholder="Email"}}
           </div>
 
           <div class="sm:flex-1 p-2">
-            <UiInput
-              @name="dob"
-              @label="Date of birth"
-              @model={{customer}}
-              @valuePath="dob"
-              @inputClasses="border border-grey-light p-2 rounded-sm w-full mt-2"
-              @placeholder="2009-08-01" />
+            {{form.input
+              name="dob"
+              label="Date of birth"
+              model=customer
+              valuePath="dob"
+              inputClasses="border border-grey-light p-2 rounded-sm w-full mt-2"
+              placeholder="2009-08-01"}}
           </div>
         </div>
 
         <div class="sm:flex">
           <div class="sm:flex-1 p-2">
-            <UiInput
-              @name="phone"
-              @label="Phone"
-              @required={{true}}
-              @model={{customer}}
-              @valuePath="phone"
-              @inputClasses="border border-grey-light p-2 rounded-sm w-full mt-2"
-              @placeholder="(+00) 1234-567890" />
+            {{form.input
+              name="phone"
+              label="Phone"
+              required=true
+              model=customer
+              valuePath="phone"
+              inputClasses="border border-grey-light p-2 rounded-sm w-full mt-2"
+              placeholder="(+00) 1234-567890"}}
           </div>
 
-          <div class="sm:flex-1 p-2 mt-2">
-            <UiInput
-              @name="mobile"
-              @label="Mobile"
-              @model={{customer}}
-              @valuePath="mobile"
-              @inputClasses="border border-grey-light p-2 rounded-sm w-full mt-2"
-              @placeholder="(+00) 1234-567890" />
+          <div class="sm:flex-1 p-2">
+            {{form.input
+              name="mobile"
+              label="Mobile"
+              model=customer
+              valuePath="mobile"
+              inputClasses="border border-grey-light p-2 rounded-sm w-full mt-2"
+              placeholder="(+00) 1234-567890"}}
           </div>
         </div>
       </div>
 
-      <button type="submit" class="btn text-white bg-pink-dark text-xl p-2 w-full"
-        disabled={{or (not (v-get customer "isValid")) (not customer.hasDirtyAttributes)}}
-        data-test-customer-details-submit>
-        Save
-      </button>
-    </form>
 
+      {{#form.button
+        type="submit"
+        disabled=(or (not (v-get customer "isValid")) (not customer.hasDirtyAttributes))
+        btnClasses="btn text-white bg-pink-dark text-xl p-2 w-full"
+        }}
+        Save
+      {{/form.button}}
+
+    {{/ui-form}}
   </UiModal>
 {{/if}}
 {{outlet}}

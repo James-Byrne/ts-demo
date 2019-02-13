@@ -1,0 +1,6 @@
+<form {{action (action onSubmit) on="submit"}} data-test-customer-form>
+  {{yield (hash
+    input=(component "ui-input")
+    button=(component "ui-button")
+  )}}
+</form>
